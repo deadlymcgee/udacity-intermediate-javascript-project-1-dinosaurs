@@ -27,9 +27,21 @@ console.log(dinos);
 
 
     // Create Human Object
+let human = {};
 
     // Use IIFE to get human data from form
-
+// (function (formElement) {
+//   console.log(formElement);
+// }(dinoForm));
+function getHumanFormData(dinoForm) {
+  const formData = new FormData(dinoForm);
+  human.name = formData.get("name");
+  human.weight = {
+    feet: formData.get("feet"),
+    inches: formData.get("inches")
+  };
+  human.diet = formData.get("diet");
+}
 
     // Create Dino Compare Method 1
     // NOTE: Weight in JSON file is in lbs, height in inches. 
@@ -59,6 +71,8 @@ button.addEventListener("click", (function () {
 
   return function () {
     console.log("comparing!")
+    const dinoForm = document.getElementById("dino-compare");
+    getHumanFormData(dinoForm);
     removeDinoForm();
   }
 }()));
