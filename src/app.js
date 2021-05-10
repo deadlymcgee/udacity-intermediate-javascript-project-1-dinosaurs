@@ -16,7 +16,14 @@ function Dino () {
   };
 }
 
-    // Create Dino Objects
+// Create Dino Objects
+let dinos = data.Dinos.map(dino => {
+   return Object.assign(Object.create(new Dino()), dino);
+})
+
+console.log(dinos);
+
+
 
 
     // Create Human Object
