@@ -48,7 +48,10 @@ console.log(dinos);
         // Add tiles to DOM
 
     // Remove form from screen
-
+function removeDinoForm() {
+  const dinoForm = document.getElementById("dino-compare");
+  dinoForm.remove();
+}
 
 // On button click, prepare and display infographic
 const button = document.getElementById("btn");
@@ -56,5 +59,6 @@ button.addEventListener("click", (function () {
 
   return function () {
     console.log("comparing!")
+    removeDinoForm();
   }
 }()));
