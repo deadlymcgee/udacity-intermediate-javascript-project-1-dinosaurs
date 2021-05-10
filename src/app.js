@@ -24,24 +24,32 @@ let dinos = data.Dinos.map(dino => {
 console.log(dinos);
 
 
+const dinoForm = document.getElementById("dino-compare");
 
 
     // Create Human Object
-let human = {};
+let createHuman = (function () {
+  let human = {};
+
+  return {
+    getHumanFormData: function (dinoForm) {
+      const formData = new FormData(dinoForm);
+      human.name = formData.get("name");
+      human.weight = {
+        feet: formData.get("feet"),
+        inches: formData.get("inches")
+      };
+      human.diet = formData.get("diet");
+      return human;
+    }
+  }
+
+}());
 
     // Use IIFE to get human data from form
 // (function (formElement) {
 //   console.log(formElement);
 // }(dinoForm));
-function getHumanFormData(dinoForm) {
-  const formData = new FormData(dinoForm);
-  human.name = formData.get("name");
-  human.weight = {
-    feet: formData.get("feet"),
-    inches: formData.get("inches")
-  };
-  human.diet = formData.get("diet");
-}
 
     // Create Dino Compare Method 1
     // NOTE: Weight in JSON file is in lbs, height in inches. 
@@ -61,7 +69,7 @@ function getHumanFormData(dinoForm) {
 
     // Remove form from screen
 function removeDinoForm() {
-  const dinoForm = document.getElementById("dino-compare");
+  // const dinoForm = document.getElementById("dino-compare");
   dinoForm.remove();
 }
 
@@ -72,7 +80,7 @@ button.addEventListener("click", (function () {
   return function () {
     console.log("comparing!")
     const dinoForm = document.getElementById("dino-compare");
-    getHumanFormData(dinoForm);
-    removeDinoForm();
+    let human = createHuman.getHumanFormData(dinoForm);
+    // removeDinoForm();
   }
 }()));
