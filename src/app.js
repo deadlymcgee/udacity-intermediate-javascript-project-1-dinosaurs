@@ -1,3 +1,4 @@
+import data from "./dino.json"
 
     // Create Dino Constructor
 
