@@ -1,7 +1,20 @@
 import data from "./dino.json"
 
-    // Create Dino Constructor
-
+// Create Dino Constructor
+function Dino () {
+  this.species = null
+  this.element = `
+    <div>
+        <h2>${this.species}</h2>
+    </div>
+  `;
+  this.getRandomFact = function () {
+    console.log("random facts!");
+  };
+  this.getDinoElement = function () {
+    return this.element;
+  };
+}
 
     // Create Dino Objects
 
