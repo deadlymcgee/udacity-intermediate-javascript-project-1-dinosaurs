@@ -51,3 +51,10 @@ console.log(dinos);
 
 
 // On button click, prepare and display infographic
+const button = document.getElementById("btn");
+button.addEventListener("click", (function () {
+
+  return function () {
+    console.log("comparing!")
+  }
+}()));
