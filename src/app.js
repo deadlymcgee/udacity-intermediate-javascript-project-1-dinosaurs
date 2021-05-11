@@ -35,10 +35,11 @@ let createHuman = (function () {
     getHumanFormData: function (dinoForm) {
       const formData = new FormData(dinoForm);
       human.name = formData.get("name");
-      human.weight = {
+      human.height = {
         feet: formData.get("feet"),
         inches: formData.get("inches")
       };
+      human.weight = formData.get("weight");
       human.diet = formData.get("diet");
       return human;
     }
