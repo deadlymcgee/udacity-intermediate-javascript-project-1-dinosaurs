@@ -74,6 +74,20 @@ let createHuman = (function () {
     // Generate Tiles for each Dino in Array
   
         // Add tiles to DOM
+function addTiles() {
+  let grid = document.getElementById("grid");
+  dinos.forEach((dino, index) => {
+    let container = document.createElement("div");
+    container.className = "grid-item";
+    if (index === 4) {
+      container.innerHTML = `<h2>${dino.name}</h2>`;
+    }
+    else {
+      container.innerHTML = dino.getDinoElement();
+    }
+    grid.appendChild(container);
+  })
+}
 
     // Remove form from screen
 function removeDinoForm() {
@@ -88,7 +102,8 @@ button.addEventListener("click", (function () {
   return function () {
     console.log("comparing!")
     const dinoForm = document.getElementById("dino-compare");
-    let human = createHuman.getHumanFormData(dinoForm);
-    // removeDinoForm();
+    dinos.splice(4, 0, createHuman.getHumanFormData(dinoForm));
+    removeDinoForm();
+    addTiles();
   }
 }()));
