@@ -1,8 +1,15 @@
 import data from "./dino.json"
 
 // Create Dino Constructor
-function Dino () {
-  this.species = null
+function Dino ({species, weight, height, diet, where, when, fact}) {
+  this.species = species;
+  this.weight = weight;
+  this.height = height;
+  this.diet = diet;
+  this.where = where;
+  this.when = when;
+  this.fact = fact;
+
   this.element = `
     <div>
         <h2>${this.species}</h2>
@@ -18,7 +25,7 @@ function Dino () {
 
 // Create Dino Objects
 let dinos = data.Dinos.map(dino => {
-   return Object.assign(Object.create(new Dino()), dino);
+   return new Dino(dino);
 })
 
 console.log(dinos);
