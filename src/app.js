@@ -22,6 +22,20 @@ function Dino ({species, weight, height, diet, where, when, fact}) {
   };
 }
 
+// Human Constructor
+function Human({name, feet, inches, weight, diet}) {
+  this.name = name;
+  this.feet = feet;
+  this.inches = inches;
+  this.weight = weight;
+  this.diet = diet;
+
+  this.getHumanElement = function () {
+    return `
+      <h2>${this.name}</h2>
+    `;
+  }
+}
 // Create Dino Objects
 let dinos = data.Dinos.map(dino => {
    return new Dino(dino);
@@ -35,19 +49,15 @@ const dinoForm = document.getElementById("dino-compare");
 
     // Create Human Object
 let createHuman = (function () {
-  let human = {};
+  let data = {};
 
   return {
     getHumanFormData: function (dinoForm) {
       const formData = new FormData(dinoForm);
-      human.name = formData.get("name");
-      human.height = {
-        feet: formData.get("feet"),
-        inches: formData.get("inches")
-      };
-      human.weight = formData.get("weight");
-      human.diet = formData.get("diet");
-      return human;
+      for (const field of formData) {
+        data[field[0]] = field[1];
+      }
+      return new Human(data);
     }
   }
 
@@ -79,7 +89,7 @@ function addTiles() {
     let container = document.createElement("div");
     container.className = "grid-item";
     if (index === 4) {
-      container.innerHTML = `<h2>${dino.name}</h2>`;
+      container.innerHTML = dino.getHumanElement();
     }
     else {
       container.innerHTML = dino.getDinoElement();
