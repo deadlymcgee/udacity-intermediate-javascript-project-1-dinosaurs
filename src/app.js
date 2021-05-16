@@ -10,16 +10,15 @@ function Dino ({species, weight, height, diet, where, when, fact}) {
   this.when = when;
   this.fact = fact;
 
-  this.element = `
-    <div>
-        <h2>${this.species}</h2>
-    </div>
-  `;
   this.getRandomFact = function () {
     console.log("random facts!");
   };
   this.getDinoElement = function () {
-    return this.element;
+    return `
+      <div>
+          <h2>${this.species}</h2>
+      </div>
+    `;
   };
 }
 
