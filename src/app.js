@@ -13,7 +13,7 @@ function Dino ({species, weight, height, diet, where, when, fact}) {
   this.getRandomFact = function () {
     console.log("random facts!");
   };
-  this.getDinoElement = function () {
+  this.generateElementString = function () {
     return `
       <div>
           <h2>${this.species}</h2>
@@ -30,7 +30,7 @@ function Human({name, feet, inches, weight, diet}) {
   this.weight = weight;
   this.diet = diet;
 
-  this.getHumanElement = function () {
+  this.generateElementString = function () {
     return `
       <h2>${this.name}</h2>
     `;
@@ -88,12 +88,7 @@ function addTiles() {
   dinos.forEach((dino, index) => {
     let container = document.createElement("div");
     container.className = "grid-item";
-    if (index === 4) {
-      container.innerHTML = dino.getHumanElement();
-    }
-    else {
-      container.innerHTML = dino.getDinoElement();
-    }
+    container.innerHTML = dino.generateElementString();
     grid.appendChild(container);
   })
 }
