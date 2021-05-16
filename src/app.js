@@ -17,9 +17,29 @@ function Dino ({species, weight, height, diet, where, when, fact}) {
     return `
       <div>
           <h2>${this.species}</h2>
+          ${this.fact}
       </div>
     `;
   };
+
+  this.compareWeight = function (human) {
+    return "comparing weight!";
+  };
+
+  this.compareHeight = function (human) {
+    return "comparing height!";
+  };
+
+  this.compareDiet = function (human) {
+    return "comparing diet!";
+  };
+
+  this.methodList = [
+      this.compareHeight,
+      this.compareWeight,
+      this.compareDiet,
+      this.getRandomFact
+  ]
 }
 
 // Human Constructor
@@ -68,6 +88,19 @@ let createHuman = (function () {
 //   console.log(formElement);
 // }(dinoForm));
 
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
+
+function randomlyCallMethod(dino, human) {
+  const result = getRandomInt(4);
+  const randomMethod = dino.methodList[result];
+  if (result < 3) {
+    // TDDO: create  setter method
+    dino.fact = randomMethod();
+  }
+}
     // Create Dino Compare Method 1
     // NOTE: Weight in JSON file is in lbs, height in inches. 
 
@@ -86,6 +119,7 @@ let createHuman = (function () {
 function addTiles() {
   let grid = document.getElementById("grid");
   dinos.forEach((dino, index) => {
+    (dino instanceof Dino) && randomlyCallMethod(dino);
     let container = document.createElement("div");
     container.className = "grid-item";
     container.innerHTML = dino.generateElementString();
