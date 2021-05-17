@@ -1,5 +1,6 @@
 import data from "./dino.json"
 
+// TODO: Refactor using module reveal pattern
 // Create Dino Constructor
 function Dino ({species, weight, height, diet, where, when, fact}) {
   this.species = species;
