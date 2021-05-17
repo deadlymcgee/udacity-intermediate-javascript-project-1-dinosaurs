@@ -71,9 +71,6 @@ let dinos = data.Dinos.map(dino => {
 console.log(dinos);
 
 
-const dinoForm = document.getElementById("dino-compare");
-
-
     // Create Human Object
 let createHuman = (function () {
   let data = {};
@@ -133,12 +130,6 @@ function addTiles() {
   })
 }
 
-    // Remove form from screen
-function removeDinoForm() {
-  // const dinoForm = document.getElementById("dino-compare");
-  dinoForm.remove();
-}
-
 // On button click, prepare and display infographic
 const button = document.getElementById("btn");
 button.addEventListener("click", (function () {
@@ -147,7 +138,8 @@ button.addEventListener("click", (function () {
     console.log("comparing!")
     const dinoForm = document.getElementById("dino-compare");
     dinos.splice(4, 0, createHuman.getHumanFormData(dinoForm));
-    removeDinoForm();
+    // Remove form from screen
+    dinoForm.remove();
     addTiles();
   }
 }()));
