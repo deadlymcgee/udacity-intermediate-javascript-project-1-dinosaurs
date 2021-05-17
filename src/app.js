@@ -1,4 +1,5 @@
 import data from "./dino.json"
+import images from "./images/*.png"
 
 // TODO: Refactor using module reveal pattern
 // Create Dino Constructor
@@ -24,7 +25,8 @@ function Dino ({species, weight, height, diet, where, when, fact}) {
     return `
       <div>
           <h2>${this.species}</h2>
-          ${this.fact}
+          <img src="${images[this.species.toLowerCase()]}" alt="">
+          <p>${this.fact}</p>
       </div>
     `;
   };
@@ -60,6 +62,7 @@ function Human({name, feet, inches, weight, diet}) {
   this.generateElementString = function () {
     return `
       <h2>${this.name}</h2>
+      <img src="${images["human"]}" alt="">
     `;
   }
 }
@@ -67,7 +70,7 @@ function Human({name, feet, inches, weight, diet}) {
 let dinos = data.Dinos.map(dino => {
    return new Dino(dino);
 })
-
+console.log(images);
 console.log(dinos);
 
 
