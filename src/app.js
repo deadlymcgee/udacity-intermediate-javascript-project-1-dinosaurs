@@ -11,8 +11,14 @@ function Dino ({species, weight, height, diet, where, when, fact}) {
   this.when = when;
   this.fact = fact;
 
-  this.getRandomFact = function () {
-    console.log("random facts!");
+  this.setFact = function (fact) {
+    if (this.species === "Pigeon") {
+      return "Pigeon fact cannot be changed!";
+    }
+    else {
+      this.fact = fact;
+      return "OK!"
+    }
   };
   this.generateElementString = function () {
     return `
@@ -39,7 +45,7 @@ function Dino ({species, weight, height, diet, where, when, fact}) {
       this.compareHeight,
       this.compareWeight,
       this.compareDiet,
-      this.getRandomFact
+      this.setFact
   ]
 }
 
@@ -98,8 +104,7 @@ function randomlyCallMethod(dino, human) {
   const result = getRandomInt(4);
   const randomMethod = dino.methodList[result];
   if (result < 3) {
-    // TDDO: create  setter method
-    dino.fact = randomMethod();
+    dino.setFact(randomMethod());
   }
 }
     // Create Dino Compare Method 1
