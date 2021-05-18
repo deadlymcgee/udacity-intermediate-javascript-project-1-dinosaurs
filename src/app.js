@@ -28,13 +28,17 @@ function Dino ({species, weight, height, diet, where, when, fact}) {
         <p>${this.fact}</p>
     `;
   };
+  this.convertToInches = function (feet, inches) {
+    return (parseInt(feet) * 12) + parseInt(inches);
+  }
 
   this.compareWeight = function (human) {
     return "comparing weight!";
   };
 
   this.compareHeight = function (human) {
-    return "comparing height!";
+    return `You are ${this.convertToInches(human.feet, human.inches) < this.height ? "shorter" : "taller"} 
+      than ${this.species}`;
   };
 
   this.compareDiet = function (human) {
