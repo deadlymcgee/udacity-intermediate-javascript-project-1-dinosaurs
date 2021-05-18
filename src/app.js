@@ -38,7 +38,7 @@ function Dino ({species, weight, height, diet, where, when, fact}) {
   };
 
   this.compareDiet = function (human) {
-    return "comparing diet!";
+    return `You and ${this.species} have ${this.diet === human.diet.toLowerCase() ? "the same" : "a different"} diet`;
   };
 
   this.methodList = [
