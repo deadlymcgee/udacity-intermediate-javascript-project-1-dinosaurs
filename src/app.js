@@ -102,7 +102,8 @@ function randomlyCallMethod(dino, human) {
   const result = getRandomInt(4);
   const randomMethod = dino.methodList[result];
   if (result < 3) {
-    dino.setFact(randomMethod());
+    // set 'this' in the Dino method using 'call'
+    dino.setFact(randomMethod.call(dino, human));
   }
 }
     // Create Dino Compare Method 1
@@ -120,10 +121,10 @@ function randomlyCallMethod(dino, human) {
     // Generate Tiles for each Dino in Array
   
         // Add tiles to DOM
-function addTiles() {
+function addTiles(human) {
   let grid = document.getElementById("grid");
   dinos.forEach((dino, index) => {
-    (dino instanceof Dino) && randomlyCallMethod(dino);
+    (dino instanceof Dino) && randomlyCallMethod(dino, human);
     let container = document.createElement("div");
     container.className = "grid-item";
     container.innerHTML = dino.generateElementString();
@@ -138,9 +139,10 @@ button.addEventListener("click", (function () {
   return function () {
     console.log("comparing!")
     const dinoForm = document.getElementById("dino-compare");
-    dinos.splice(4, 0, createHuman.getHumanFormData(dinoForm));
+    let human = createHuman.getHumanFormData(dinoForm);
+    dinos.splice(4, 0, human);
     // Remove form from screen
     dinoForm.remove();
-    addTiles();
+    addTiles(human);
   }
 }()));
