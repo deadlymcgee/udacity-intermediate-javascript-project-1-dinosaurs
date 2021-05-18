@@ -23,11 +23,9 @@ function Dino ({species, weight, height, diet, where, when, fact}) {
   };
   this.generateElementString = function () {
     return `
-      <div>
-          <h2>${this.species}</h2>
-          <img src="${images[this.species.toLowerCase()]}" alt="">
-          <p>${this.fact}</p>
-      </div>
+        <h2>${this.species}</h2>
+        <img src="${images[this.species.toLowerCase()]}" alt="">
+        <p>${this.fact}</p>
     `;
   };
 
