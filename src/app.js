@@ -30,7 +30,7 @@ function Dino ({species, weight, height, diet, where, when, fact}) {
   };
 
   this.compareWeight = function (human) {
-    return "comparing weight!";
+    return `You are ${human.weight < this.weight ? "lighter" : "heavier"} than ${this.species}`;
   };
 
   this.compareHeight = function (human) {
