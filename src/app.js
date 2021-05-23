@@ -5,6 +5,7 @@ import images from "./images/*.png"
 const dinoFactory = function(
     {species, weight, height, diet, where, when, fact}
 ) {
+  let _type = "Dino";
   let _species = species;
   let _weight = weight;
   let _height = height;
@@ -12,6 +13,10 @@ const dinoFactory = function(
   let _where = where;
   let _when = when;
   let _fact = fact;
+
+  function getType() {
+    return _type;
+  }
 
   function getSpecies() {
     return _species;
@@ -39,6 +44,10 @@ const dinoFactory = function(
 
   function createDino() {
     return {
+      getType: function () {
+        return getType();
+      },
+
       setFact: function (fact) {
         if (getSpecies() === "Pigeon") {
           return "Pigeon fact cannot be changed!";
@@ -86,11 +95,16 @@ const dinoFactory = function(
 
 // Human Constructor
 function Human({name, feet, inches, weight, diet}) {
+  this.type = "Human";
   this.name = name;
   this.feet = feet;
   this.inches = inches;
   this.weight = weight;
   this.diet = diet;
+
+  this.getType = function () {
+    return this.type;
+  }
 
   this.getHeightInInches = function() {
     return (parseInt(this.feet) * 12) + parseInt(this.inches);
@@ -163,8 +177,7 @@ function randomlyCallMethod(dino, human) {
 function addTiles(human) {
   let grid = document.getElementById("grid");
   dinos.forEach((dino, index) => {
-    // (dino instanceof Dino) && randomlyCallMethod(dino, human);
-    index === 5 && randomlyCallMethod(dino, human);
+    dino.getType() === "Dino" && randomlyCallMethod(dino, human);
     let container = document.createElement("div");
     container.className = "grid-item";
     container.innerHTML = dino.generateElementString();
