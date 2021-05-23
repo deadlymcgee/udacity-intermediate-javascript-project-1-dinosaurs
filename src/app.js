@@ -2,17 +2,26 @@ import data from "./dino.json"
 import images from "./images/*.png"
 
 // TODO: Refactor using module reveal pattern
-// Create Dino Constructor
-function Dino ({species, weight, height, diet, where, when, fact}) {
-  this.species = species;
-  this.weight = weight;
-  this.height = height;
-  this.diet = diet;
-  this.where = where;
-  this.when = when;
-  this.fact = fact;
+const dinoFactory = function(dino, proto) {
 
-  this.setFact = function (fact) {
+
+  // Create Dino Constructor
+  function Dino ({species, weight, height, diet, where, when, fact}) {
+    this.species = species;
+    this.weight = weight;
+    this.height = height;
+    this.diet = diet;
+    this.where = where;
+    this.when = when;
+    this.fact = fact;
+  }
+
+  return Object.assign(new Dino(dino), Object.create(proto))
+
+}
+
+const dinoProto = {
+  setFact: function (fact) {
     if (this.species === "Pigeon") {
       return "Pigeon fact cannot be changed!";
     }
@@ -20,34 +29,37 @@ function Dino ({species, weight, height, diet, where, when, fact}) {
       this.fact = fact;
       return "OK!"
     }
-  };
-  this.generateElementString = function () {
+  },
+
+  generateElementString: function () {
     return `
         <h2>${this.species}</h2>
         <img src="${images[this.species.toLowerCase()]}" alt="">
         <p>${this.fact}</p>
     `;
-  };
+  },
 
-  this.compareWeight = function (human) {
+  compareWeight: function (human) {
     return `You are ${human.weight < this.weight ? "lighter" : "heavier"} than ${this.species}`;
-  };
+  },
 
-  this.compareHeight = function (human) {
+  compareHeight: function (human) {
     return `You are ${human.getHeightInInches() < this.height ? "shorter" : "taller"} 
       than ${this.species}`;
-  };
+  },
 
-  this.compareDiet = function (human) {
+  compareDiet: function (human) {
     return `You and ${this.species} have ${this.diet === human.diet.toLowerCase() ? "the same" : "a different"} diet`;
-  };
+  },
 
-  this.methodList = [
+  getMethodList: function() {
+    return [
       this.compareHeight,
       this.compareWeight,
       this.compareDiet,
       this.setFact
-  ]
+    ]
+  }
 }
 
 // Human Constructor
@@ -71,7 +83,7 @@ function Human({name, feet, inches, weight, diet}) {
 }
 // Create Dino Objects
 let dinos = data.Dinos.map(dino => {
-   return new Dino(dino);
+   return dinoFactory(dino, dinoProto);
 })
 console.log(images);
 console.log(dinos);
