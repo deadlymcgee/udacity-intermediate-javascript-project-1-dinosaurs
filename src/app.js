@@ -4,15 +4,7 @@ import images from "./images/*.png"
 // TODO: Refactor using module reveal pattern
 const dinoFactory = function(
     {species, weight, height, diet, where, when, fact}
-    // dino,
 ) {
-
-  // function Dino (dino) {
-  //   this.species = dino.species
-  //   return Object.create(dinoProto);
-  // }
-  // let newDino = Object.create(dinoProto);
-  // this.species = dino.species;
   let _species = species;
   let _weight = weight;
   let _height = height;
@@ -20,16 +12,6 @@ const dinoFactory = function(
   let _where = where;
   let _when = when;
   let _fact = fact;
-  // newDino.species = dino.species;
-  // function Dino () {
-  //   this.species = dino;
-  // }
-  // newDino.weight = weight;
-  // newDino.height = height;
-  // newDino.diet = diet;
-  // newDino.where = where;
-  // newDino.when = when;
-  // newDino.fact = fact;
 
   function getSpecies() {
     return _species;
@@ -99,12 +81,7 @@ const dinoFactory = function(
     }
   }
 
-  // return newDino;
-  // return Object.create(proto);
   return Object.create(createDino());
-  // return function () {
-  //   return Object.create(dinoProto);
-  // }
 };
 
 // Human Constructor
