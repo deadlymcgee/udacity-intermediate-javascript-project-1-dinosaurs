@@ -3,9 +3,8 @@ import images from "./images/*.png"
 
 // TODO: Refactor using module reveal pattern
 const dinoFactory = function(
-    // {species, weight, height, diet, where, when, fact}
-    dino,
-    dinoProto
+    {species, weight, height, diet, where, when, fact}
+    // dino,
 ) {
 
   // function Dino (dino) {
@@ -14,7 +13,13 @@ const dinoFactory = function(
   // }
   // let newDino = Object.create(dinoProto);
   // this.species = dino.species;
-  let species = dino.species;
+  let _species = species;
+  let _weight = weight;
+  let _height = height;
+  let _diet = diet;
+  let _where = where;
+  let _when = when;
+  let _fact = fact;
   // newDino.species = dino.species;
   // function Dino () {
   //   this.species = dino;
@@ -26,15 +31,71 @@ const dinoFactory = function(
   // newDino.when = when;
   // newDino.fact = fact;
 
+  function getSpecies() {
+    return _species;
+  }
+
+  function getFact() {
+    return _fact;
+  }
+
+  function setFact(fact) {
+    _fact = fact;
+  }
+
+  function getHeight() {
+    return _height;
+  }
+
+  function getWeight() {
+    return _weight;
+  }
+
+  function getDiet() {
+    return _diet;
+  }
+
   function createDino() {
     return {
+      setFact: function (fact) {
+        if (getSpecies() === "Pigeon") {
+          return "Pigeon fact cannot be changed!";
+        }
+        else {
+          setFact(fact);
+          return "OK!"
+        }
+      },
+
       generateElementString: function () {
         return `
-        <h2>${species}</h2>
-        <img src="${images[species.toLowerCase()]}" alt="">
-<!--        <p>${this.fact}</p>-->
+        <h2>${getSpecies()}</h2>
+        <img src="${images[getSpecies().toLowerCase()]}" alt="">
+        <p>${getFact()}</p>
     `;
       },
+
+      compareWeight: function (human) {
+        return `You are ${human.weight < getWeight() ? "lighter" : "heavier"} than ${getSpecies()}`;
+      },
+
+      compareHeight: function (human) {
+        return `You are ${human.getHeightInInches() < getHeight() ? "shorter" : "taller"} 
+      than ${getSpecies()}`;
+      },
+
+      compareDiet: function (human) {
+        return `You and ${getSpecies()} have ${getDiet() === human.diet.toLowerCase() ? "the same" : "a different"} diet`;
+      },
+
+      getMethodList: function() {
+        return [
+          createDino().compareHeight,
+          createDino().compareWeight,
+          createDino().compareDiet,
+          setFact
+        ]
+      }
     }
   }
 
@@ -45,48 +106,6 @@ const dinoFactory = function(
   //   return Object.create(dinoProto);
   // }
 };
-
-const dinoProto = {
-  setFact: function (fact) {
-    if (this.species === "Pigeon") {
-      return "Pigeon fact cannot be changed!";
-    }
-    else {
-      this.fact = fact;
-      return "OK!"
-    }
-  },
-
-  generateElementString: function () {
-    return `
-        <h2>${this.species}</h2>
-        <img src="${images[this.species.toLowerCase()]}" alt="">
-        <p>${this.fact}</p>
-    `;
-  },
-
-  compareWeight: function (human) {
-    return `You are ${human.weight < this.weight ? "lighter" : "heavier"} than ${this.species}`;
-  },
-
-  compareHeight: function (human) {
-    return `You are ${human.getHeightInInches() < this.height ? "shorter" : "taller"} 
-      than ${this.species}`;
-  },
-
-  compareDiet: function (human) {
-    return `You and ${this.species} have ${this.diet === human.diet.toLowerCase() ? "the same" : "a different"} diet`;
-  },
-
-  getMethodList: function() {
-    return [
-      this.compareHeight,
-      this.compareWeight,
-      this.compareDiet,
-      this.setFact
-    ]
-  }
-}
 
 // Human Constructor
 function Human({name, feet, inches, weight, diet}) {
