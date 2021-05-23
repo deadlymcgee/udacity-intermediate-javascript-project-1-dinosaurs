@@ -2,23 +2,49 @@ import data from "./dino.json"
 import images from "./images/*.png"
 
 // TODO: Refactor using module reveal pattern
-const dinoFactory = function(dino, proto) {
+const dinoFactory = function(
+    // {species, weight, height, diet, where, when, fact}
+    dino,
+    dinoProto
+) {
 
+  // function Dino (dino) {
+  //   this.species = dino.species
+  //   return Object.create(dinoProto);
+  // }
+  // let newDino = Object.create(dinoProto);
+  // this.species = dino.species;
+  let species = dino.species;
+  // newDino.species = dino.species;
+  // function Dino () {
+  //   this.species = dino;
+  // }
+  // newDino.weight = weight;
+  // newDino.height = height;
+  // newDino.diet = diet;
+  // newDino.where = where;
+  // newDino.when = when;
+  // newDino.fact = fact;
 
-  // Create Dino Constructor
-  function Dino ({species, weight, height, diet, where, when, fact}) {
-    this.species = species;
-    this.weight = weight;
-    this.height = height;
-    this.diet = diet;
-    this.where = where;
-    this.when = when;
-    this.fact = fact;
+  function createDino() {
+    return {
+      generateElementString: function () {
+        return `
+        <h2>${species}</h2>
+        <img src="${images[species.toLowerCase()]}" alt="">
+<!--        <p>${this.fact}</p>-->
+    `;
+      },
+    }
   }
 
-  return Object.assign(new Dino(dino), Object.create(proto))
-
-}
+  // return newDino;
+  // return Object.create(proto);
+  return Object.create(createDino());
+  // return function () {
+  //   return Object.create(dinoProto);
+  // }
+};
 
 const dinoProto = {
   setFact: function (fact) {
@@ -83,7 +109,7 @@ function Human({name, feet, inches, weight, diet}) {
 }
 // Create Dino Objects
 let dinos = data.Dinos.map(dino => {
-   return dinoFactory(dino, dinoProto);
+   return dinoFactory(dino);
 })
 console.log(images);
 console.log(dinos);
