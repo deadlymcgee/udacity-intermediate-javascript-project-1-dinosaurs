@@ -162,10 +162,10 @@ function getRandomInt(max) {
 
 function randomlyCallMethod(dino, human) {
   const result = getRandomInt(4);
-  const randomMethod = dino.methodList[result];
+  const randomMethod = dino.getMethodList()[result];
   if (result < 3) {
     // set 'this' in the Dino method using 'call'
-    dino.setFact(randomMethod.call(dino, human));
+    dino.setFact(randomMethod(human));
   }
 }
     // Create Dino Compare Method 1
@@ -186,7 +186,8 @@ function randomlyCallMethod(dino, human) {
 function addTiles(human) {
   let grid = document.getElementById("grid");
   dinos.forEach((dino, index) => {
-    (dino instanceof Dino) && randomlyCallMethod(dino, human);
+    // (dino instanceof Dino) && randomlyCallMethod(dino, human);
+    index === 5 && randomlyCallMethod(dino, human);
     let container = document.createElement("div");
     container.className = "grid-item";
     container.innerHTML = dino.generateElementString();
