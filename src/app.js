@@ -211,10 +211,18 @@ console.log(dinos);
 
 
     // Create Human Object
+/**
+ * @description Uses an IIFE to expose a helper function for instantiating a Human object. Protects the data attribute.
+ * @returns {Object} - The object containing the public function
+ */
 let createHuman = (function () {
   let data = {};
 
   return {
+    /**
+     * @description Instantiates a Human object using form field values
+     * @returns {Object} - The Human object
+     */
     getHumanFormData: function (dinoForm) {
       const formData = new FormData(dinoForm);
       for (const field of formData) {
@@ -232,10 +240,20 @@ let createHuman = (function () {
 // }(dinoForm));
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+/**
+ * @description Generates a random number between 0 and the maximum value provided
+ * @param {number} max - maximum value
+ * @returns {number}
+ */
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
 
+/**
+ * @description Randomly calls a method on the Dinosaur object to set the Dinosaur fact
+ * @param {Object} dino - A Dinosaur object
+ * @param {Object} human - The Human object
+ */
 function randomlyCallMethod(dino, human) {
   const result = getRandomInt(4);
   const randomMethod = dino.getMethodList()[result];
@@ -259,6 +277,10 @@ function randomlyCallMethod(dino, human) {
     // Generate Tiles for each Dino in Array
   
         // Add tiles to DOM
+/**
+ * @description Generates and adds the tiles to the DOM
+ * @param {Object} human - The Human object
+ */
 function addTiles(human) {
   let grid = document.getElementById("grid");
   dinos.forEach((dino, index) => {
@@ -274,6 +296,9 @@ function addTiles(human) {
 const button = document.getElementById("btn");
 button.addEventListener("click", (function () {
 
+  /**
+   * @description Prepares and display infographic on button click
+   */
   return function () {
     console.log("comparing!")
     const dinoForm = document.getElementById("dino-compare");
