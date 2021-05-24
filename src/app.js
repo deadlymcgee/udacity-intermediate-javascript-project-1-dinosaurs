@@ -1,7 +1,6 @@
 import data from "./dino.json"
 import images from "./images/*.png"
 
-// TODO: Refactor using module reveal pattern
 /**
  * @description Factory function that creates a Dinosaur object with shared methods and private attributes
  * @param {Object} dino - An object representing a Dinosaur from a JSON file
