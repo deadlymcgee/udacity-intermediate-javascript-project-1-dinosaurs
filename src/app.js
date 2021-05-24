@@ -206,11 +206,7 @@ function Human({name, feet, inches, weight, diet}) {
 let dinos = data.Dinos.map(dino => {
    return dinoFactory(dino);
 })
-console.log(images);
-console.log(dinos);
 
-
-    // Create Human Object
 /**
  * @description Uses an IIFE to expose a helper function for instantiating a Human object. Protects the data attribute.
  * @returns {Object} - The object containing the public function
@@ -234,11 +230,6 @@ let createHuman = (function () {
 
 }());
 
-    // Use IIFE to get human data from form
-// (function (formElement) {
-//   console.log(formElement);
-// }(dinoForm));
-
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
 /**
  * @description Generates a random number between 0 and the maximum value provided
@@ -258,25 +249,10 @@ function randomlyCallMethod(dino, human) {
   const result = getRandomInt(4);
   const randomMethod = dino.getMethodList()[result];
   if (result < 3) {
-    // set 'this' in the Dino method using 'call'
     dino.setFact(randomMethod(human));
   }
 }
-    // Create Dino Compare Method 1
-    // NOTE: Weight in JSON file is in lbs, height in inches. 
 
-    
-    // Create Dino Compare Method 2
-    // NOTE: Weight in JSON file is in lbs, height in inches.
-
-    
-    // Create Dino Compare Method 3
-    // NOTE: Weight in JSON file is in lbs, height in inches.
-
-
-    // Generate Tiles for each Dino in Array
-  
-        // Add tiles to DOM
 /**
  * @description Generates and adds the tiles to the DOM
  * @param {Object} human - The Human object
@@ -300,7 +276,6 @@ button.addEventListener("click", (function () {
    * @description Prepares and display infographic on button click
    */
   return function () {
-    console.log("comparing!")
     const dinoForm = document.getElementById("dino-compare");
     let human = createHuman.getHumanFormData(dinoForm);
     dinos.splice(4, 0, human);
