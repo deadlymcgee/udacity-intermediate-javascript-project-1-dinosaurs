@@ -259,7 +259,7 @@ function randomlyCallMethod(dino, human) {
  */
 function addTiles(human) {
   let grid = document.getElementById("grid");
-  dinos.forEach((dino, index) => {
+  dinos.forEach((dino) => {
     dino.getType() === "Dino" && randomlyCallMethod(dino, human);
     let container = document.createElement("div");
     container.className = "grid-item";
