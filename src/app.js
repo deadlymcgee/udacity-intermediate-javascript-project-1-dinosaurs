@@ -162,7 +162,11 @@ const dinoFactory = function(
   return Object.create(createDino());
 };
 
-// Human Constructor
+/**
+ * @description Represents a Human
+ * @constructor
+ * @param {Object} formData - An object representing the relevant fields from the form
+ */
 function Human({name, feet, inches, weight, diet}) {
   this.type = "Human";
   this.name = name;
@@ -171,14 +175,26 @@ function Human({name, feet, inches, weight, diet}) {
   this.weight = weight;
   this.diet = diet;
 
+  /**
+   * @description Gets the Object type
+   * @returns {string}
+   */
   this.getType = function () {
     return this.type;
   }
 
+  /**
+   * @description Gets the height in inches converted from height in feet and inches
+   * @returns {int}
+   */
   this.getHeightInInches = function() {
     return (parseInt(this.feet) * 12) + parseInt(this.inches);
   }
 
+  /**
+   * @description Generate a string representing the HTML element of the Human
+   * @returns {string}
+   */
   this.generateElementString = function () {
     return `
       <h2>${this.name}</h2>
